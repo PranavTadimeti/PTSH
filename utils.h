@@ -1,0 +1,1 @@
+void util(char * tok,char * buf);
