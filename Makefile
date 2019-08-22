@@ -4,7 +4,7 @@ ptsh: main.o cd.o prompt.o utils.o ls.o
 	gcc $(FLAGS) main.o cd.o prompt.o utils.o ls.o
 
 clean: 
-	rm -f *.o a.out
+	rm *.o a.out
 
 main.o: main.c 
 	gcc $(FLAGS) -c main.c
