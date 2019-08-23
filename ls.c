@@ -112,7 +112,7 @@ void printDir(char * tok,char * home){
         } else {
             dirpres = 1;
             if(tok[0] == '~'){
-                tok[strlen(tok)-1]='\0';
+                if(tok[strlen(tok)-1] == '\n'){tok[strlen(tok)-1] = '\0';}
                 strcpy(dir,home);
                 strcat(dir,++tok);
                 continue;

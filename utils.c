@@ -15,7 +15,7 @@ void util(char * tok,char * buf2){
             strcat(temp," ");
             strcat(temp,tok);
         }
-        temp[strlen(temp)-1] = '\0';
+        if(tok[strlen(tok)-1] == '\n'){tok[strlen(tok)-1] = '\0';}
         printf("%s\n",temp);
 
     } else {

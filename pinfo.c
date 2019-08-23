@@ -13,7 +13,7 @@ void getPinfo(char * tok){
 
     while((tok = strtok(NULL," ")) != NULL){
         flag = 1;
-        tok[strlen(tok)-1] = '\0';
+        if(tok[strlen(tok)-1] == '\n'){tok[strlen(tok)-1] = '\0';}
         strcpy(i,tok);
     }
 

@@ -12,7 +12,7 @@ void changeDir(char * tok,char * home){
     
     while((tok = strtok(NULL," ")) != NULL){
         dirpres = 1;
-        tok[strlen(tok)-1] = '\0';
+        if(tok[strlen(tok)-1] == '\n'){tok[strlen(tok)-1] = '\0';}
         strcpy(dir,tok);
     }
 
