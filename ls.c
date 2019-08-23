@@ -60,13 +60,13 @@ void checkPerm(char * path){
         if(s.st_mode & S_IXOTH ){printf("x");} 
         else {printf("-");} 
 
-        printf(" %d ",(int)s.st_nlink);
+        printf("\t%d\t",(int)s.st_nlink);
 
         char * p = getpwuid(s.st_uid)->pw_name;
         char * g = getgrgid(s.st_gid)->gr_name; 
 
-        printf("%s %s ",p,g);
-        printf("%ld ",s.st_size);
+        printf("%s\t%s\t",p,g);
+        printf("%ld\t",s.st_size);
 
 
         time_t t;
@@ -77,15 +77,15 @@ void checkPerm(char * path){
         tmp = localtime(&s.st_ctime);
 
 
-        strftime(tim,100,"%b %d %H:%M",tmp);
+        strftime(tim,100,"%b\t%d\t%H:%M",tmp);
 
-        printf("%s ",tim);
+        printf("%s\t",tim);
 
 
 }
 
 
-void printDir(char * tok){
+void printDir(char * tok,char * home){
     struct dirent **namelist;
     int n;
     int aflag=0;
@@ -110,16 +110,24 @@ void printDir(char * tok){
                 }
             }
         } else {
-            if(tok[strlen(tok)-1] == '\n'){
-                tok[strlen(tok)-1] = '\0';
-            }
-            strcpy(dir,tok);
             dirpres = 1;
+            if(tok[0] == '~'){
+                tok[strlen(tok)-1]='\0';
+                strcpy(dir,home);
+                strcat(dir,++tok);
+                continue;
+            } else {
+                if(tok[strlen(tok)-1] == '\n'){
+                    tok[strlen(tok)-1] = '\0';
+                }
+                strcpy(dir,tok);
+            }
         } 
         tok[strlen(tok)-1] = '\0';
     }
 
     if(!dirpres){dir = ".";}
+    
     n = scandir(dir,&namelist,filter,alphasort);
     if(aflag){n = scandir(dir,&namelist,NULL,alphasort);}
     

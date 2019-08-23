@@ -36,7 +36,7 @@ void runShell(){
         } else if(strcmp(tok,"pwd\n") == 0 || strcmp(tok,"pwd") == 0 || strcmp(tok,"echo") == 0){
             util(tok,buf2);
         } else if(strcmp(tok,"ls") == 0 || strcmp(tok,"ls\n") == 0){
-            printDir(tok);
+            printDir(tok,home);
         } else if(strcmp(tok,"pinfo\n") == 0 || strcmp(tok,"pinfo") == 0){
             getPinfo(tok);
         }
