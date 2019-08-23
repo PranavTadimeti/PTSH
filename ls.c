@@ -110,10 +110,13 @@ void printDir(char * tok){
                 }
             }
         } else {
-            tok[strlen(tok)-1] = '\0';
+            if(tok[strlen(tok)-1] == '\n'){
+                tok[strlen(tok)-1] = '\0';
+            }
             strcpy(dir,tok);
             dirpres = 1;
         } 
+        tok[strlen(tok)-1] = '\0';
     }
 
     if(!dirpres){dir = ".";}

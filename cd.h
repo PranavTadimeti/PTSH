@@ -1,1 +1,1 @@
-void changeDir(char * buf3,char * tok,char * home);
+void changeDir(char * tok,char * home);

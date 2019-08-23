@@ -1,0 +1,1 @@
+void getPinfo(char * tok);

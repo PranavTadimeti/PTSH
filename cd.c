@@ -5,16 +5,21 @@
 #include<linux/limits.h>
 #include "cd.h"
 
-void changeDir(char * buf3,char * tok,char * home){
-    do {
-        tok = strtok(NULL," ");
-    } while(strcmp(tok,"cd") == 0);
+void changeDir(char * tok,char * home){
 
-    tok[strlen(tok)-1] = '\0';
+    int dirpres=0;
+    char * dir = (char *)malloc(100*sizeof(char));
+    
+    while((tok = strtok(NULL," ")) != NULL){
+        dirpres = 1;
+        tok[strlen(tok)-1] = '\0';
+        strcpy(dir,tok);
+    }
 
-    if(strcmp(tok,"~") == 0){
+
+    if(strcmp(dir,"~") == 0 || dirpres == 0){
         chdir(home);
     } else {
-        chdir(tok);
+        chdir(dir);
     }
 }

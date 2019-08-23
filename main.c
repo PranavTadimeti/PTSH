@@ -7,6 +7,7 @@
 #include "cd.h"
 #include "utils.h"
 #include "ls.h"
+#include "pinfo.h"
 
 void runShell(){
     char * buf;
@@ -30,12 +31,14 @@ void runShell(){
 
         tok = strtok(buf," ");
 
-        if(strcmp(tok,"cd") == 0){
-            changeDir(buf,tok,home);
+        if(strcmp(tok,"cd") == 0 || strcmp(tok,"cd\n") == 0){
+            changeDir(tok,home);
         } else if(strcmp(tok,"pwd\n") == 0 || strcmp(tok,"pwd") == 0 || strcmp(tok,"echo") == 0){
             util(tok,buf2);
         } else if(strcmp(tok,"ls") == 0 || strcmp(tok,"ls\n") == 0){
             printDir(tok);
+        } else if(strcmp(tok,"pinfo\n") == 0 || strcmp(tok,"pinfo") == 0){
+            getPinfo(tok);
         }
 
     }
