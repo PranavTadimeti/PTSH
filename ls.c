@@ -127,7 +127,8 @@ void printDir(char * tok){
         if(dirpres){
 
             for(int i=0;i<n;i++){
-                char * temp = dir;
+                char * temp = (char *)malloc(100*sizeof(char));
+                strcpy(temp,dir);
                 strcat(temp,"/");
                 strcat(temp,namelist[i]->d_name);
                 checkPerm(temp);
