@@ -29,16 +29,32 @@ void runShell(){
         if(i == -1){exit(0);}
         strcpy(buf2,buf);
 
-        tok = strtok(buf," ");
+        char * t;
+        t = strtok(buf,";");
 
-        if(strcmp(tok,"cd") == 0 || strcmp(tok,"cd\n") == 0){
-            changeDir(tok,home);
-        } else if(strcmp(tok,"pwd\n") == 0 || strcmp(tok,"pwd") == 0 || strcmp(tok,"echo") == 0){
-            util(tok,buf2);
-        } else if(strcmp(tok,"ls") == 0 || strcmp(tok,"ls\n") == 0){
-            printDir(tok,home);
-        } else if(strcmp(tok,"pinfo\n") == 0 || strcmp(tok,"pinfo") == 0){
-            getPinfo(tok);
+        char toks[10][100];
+        int c=0;
+
+        while(t != NULL){
+            strcpy(toks[c],t);
+            t = strtok(NULL,";");
+            c++;
+        }
+
+        for(int i=0;i<c;i++){
+            
+            tok = strtok(toks[i]," ");
+
+            if(strcmp(tok,"cd") == 0 || strcmp(tok,"cd\n") == 0){
+                changeDir(tok,home);
+            } else if(strcmp(tok,"pwd\n") == 0 || strcmp(tok,"pwd") == 0 || strcmp(tok,"echo") == 0){
+                util(tok,buf2);
+            } else if(strcmp(tok,"ls") == 0 || strcmp(tok,"ls\n") == 0){
+                printDir(tok,home);
+            } else if(strcmp(tok,"pinfo\n") == 0 || strcmp(tok,"pinfo") == 0){
+                getPinfo(tok);
+            }
+            if(i != c-1){printf("\n");}
         }
 
     }
