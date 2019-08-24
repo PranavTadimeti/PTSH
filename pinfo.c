@@ -33,6 +33,11 @@ void getPinfo(char * tok){
 
     char procstat[100];
 
+    if(access(path,F_OK) == -1){
+        printf("Process with PID %s doesn't exist.\n",i);
+        return;
+    }
+
     FILE * fp = fopen(path,"r");
 
     char *tok1 = (char *)malloc(100*sizeof(char));

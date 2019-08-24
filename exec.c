@@ -57,7 +57,9 @@ void execProc(char * argv[],char * tok){
     if(flag){
         cpid = fork();
         if(cpid == 0){
-            execvp(argv[0],argv);
+            if(execvp(argv[0],argv)){
+                perror("Command could not be executed\n");
+            }
         }
 
     } else {
@@ -66,6 +68,7 @@ void execProc(char * argv[],char * tok){
         if(cpid == 0){
             execvp(argv[0],argv);
         } else {
+            printf("ID: %d\n",cpid);
             do {
                 wait(&status);
             } while(!WIFEXITED(status));
