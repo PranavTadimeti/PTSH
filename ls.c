@@ -81,9 +81,7 @@ void checkPerm(char * path){
 
         printf("%s\t",tim);
 
-
 }
-
 
 void printDir(char * tok,char * home){
     struct dirent **namelist;

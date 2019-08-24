@@ -6,7 +6,10 @@
 #include "prompt.h"
 
 void makePrompt(char * home){
-    
+    //char home[PATH_MAX];
+    //getcwd(home,sizeof(home));
+    //printf("%s\n",home);
+
     char * buf1;
     char * buf2;
     char cwd[PATH_MAX];

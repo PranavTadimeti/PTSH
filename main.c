@@ -3,6 +3,8 @@
 #include<unistd.h>
 #include<linux/limits.h>
 #include<string.h>
+#include<signal.h>
+#include<wait.h>
 #include "prompt.h"
 #include "cd.h"
 #include "utils.h"
@@ -50,25 +52,26 @@ void runShell(){
             
             tok = strtok(toks[i]," ");
 
-            if(strcmp(tok,"cd") == 0 || strcmp(tok,"cd\n") == 0){
-                changeDir(tok,home);
-            } else if(strcmp(tok,"pwd\n") == 0 || strcmp(tok,"pwd") == 0 || strcmp(tok,"echo") == 0){
-                util(tok,buf2);
-            } else if(strcmp(tok,"ls") == 0 || strcmp(tok,"ls\n") == 0){
-                printDir(tok,home);
-            } else if(strcmp(tok,"pinfo\n") == 0 || strcmp(tok,"pinfo") == 0){
-                getPinfo(tok);
-            } else {
+            if(strcmp(tok,"cd") == 0 || strcmp(tok,"cd\n") == 0){changeDir(tok,home);}
+
+            else if(strcmp(tok,"pwd\n") == 0 || strcmp(tok,"pwd") == 0 || strcmp(tok,"echo") == 0){util(tok,buf2);}
+            else if(strcmp(tok,"ls") == 0 || strcmp(tok,"ls\n") == 0){printDir(tok,home);} 
+            else if(strcmp(tok,"pinfo\n") == 0 || strcmp(tok,"pinfo") == 0){getPinfo(tok);}
+            else if(strcmp(tok,"exit") == 0 || strcmp(tok,"exit\n") == 0){return;} 
+            
+            else {
                 if(tok[strlen(tok)-1] == '\n'){tok[strlen(tok)-1] = '\0';}
                 strcpy(argv[0],tok);
                 execProc(argv,tok);
             }
             if(i != c-1){printf("\n");}
+
         }
 
     }
 }
 
 int main(){
+    signal(SIGCHLD,endProc);
     runShell();
 }
