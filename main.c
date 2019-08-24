@@ -8,6 +8,7 @@
 #include "utils.h"
 #include "ls.h"
 #include "pinfo.h"
+#include "exec.h"
 
 void runShell(){
     char * buf;
@@ -41,6 +42,10 @@ void runShell(){
             c++;
         }
 
+        char **argv = (char **)malloc(100*sizeof(char *));
+
+        for(int i=0;i<100;i++){argv[i] = (char *)malloc(100*sizeof(char));}
+
         for(int i=0;i<c;i++){
             
             tok = strtok(toks[i]," ");
@@ -53,6 +58,10 @@ void runShell(){
                 printDir(tok,home);
             } else if(strcmp(tok,"pinfo\n") == 0 || strcmp(tok,"pinfo") == 0){
                 getPinfo(tok);
+            } else {
+                if(tok[strlen(tok)-1] == '\n'){tok[strlen(tok)-1] = '\0';}
+                strcpy(argv[0],tok);
+                execProc(argv,tok);
             }
             if(i != c-1){printf("\n");}
         }
