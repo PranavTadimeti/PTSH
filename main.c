@@ -28,16 +28,11 @@ void runShell(){
 
     getcwd(home, sizeof(home));
 
-    char * histp = (char *)malloc(100*sizeof(char));
+    /*char * histp = (char *)malloc(100*sizeof(char));
     strcpy(histp,home);
     strcat(histp,"/hist.txt");
     int fd = open(histp, O_WRONLY | O_CREAT,0700);
-    close(fd);
-
-    int curr=0;
-    char *h[25];
-
-    for(int i=0;i<25;i++){h[i] = NULL;}
+    close(fd);*/
 
     while(1){
         makePrompt(home);
@@ -65,7 +60,6 @@ void runShell(){
         for(int i=0;i<c;i++){
             
             tok = strtok(toks[i]," ");
-            //if(tok[strlen(tok)-1] == '\n'){tok[strlen(tok)-1] = '\0';}
 
             if(strcmp(tok,"cd") == 0 || strcmp(tok,"cd\n") == 0){changeDir(tok,home);}
 
@@ -73,7 +67,7 @@ void runShell(){
             else if(strcmp(tok,"ls") == 0 || strcmp(tok,"ls\n") == 0){printDir(tok,home);} 
             else if(strcmp(tok,"pinfo\n") == 0 || strcmp(tok,"pinfo") == 0){getPinfo(tok);}
             else if(strcmp(tok,"exit") == 0 || strcmp(tok,"exit\n") == 0){return;} 
-            else if(strcmp(tok,"history") == 0 || strcmp(tok,"history\n") == 0){printHistory(curr);}
+            //else if(strcmp(tok,"history") == 0 || strcmp(tok,"history\n") == 0){printHistory(curr);}
             else if(strcmp(tok,"nightswatch") == 0){nwatch(tok);}
             
             else {
@@ -84,8 +78,6 @@ void runShell(){
             if(i != c-1){printf("\n");}
 
         }
-
-        //curr = (curr+1)%20;
 
     }
 }

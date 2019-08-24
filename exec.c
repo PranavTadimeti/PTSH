@@ -18,13 +18,17 @@ void endProc(){
     if (pid>0){
         if(WIFEXITED(wstatus)){
             if(WEXITSTATUS(wstatus) == EXIT_SUCCESS){
-                printf("Process with pid %d ended normally.\n",pid);
+                //printf("Process with pid %d ended normally.\n",pid);
+                fprintf(stderr,"Process with pid %d ended normally.\n",pid);
             } else {
-                printf("Process with pid %d ended abnormally.\n",pid);
+                //printf("Process with pid %d ended abnormally.\n",pid);
+                fprintf(stderr,"Process with pid %d ended abnormally.\n",pid);
             }
         } else {
-            printf("Process with pid %d ended abnormally.\n",pid);
+            fprintf(stderr,"Process with pid %d ended abnormally.\n",pid);
+            //printf("Process with pid %d ended abnormally.\n",pid);
         }
+
         char home[PATH_MAX];
         getcwd(home,sizeof(home));
         makePrompt(home);
