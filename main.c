@@ -11,6 +11,8 @@
 #include "ls.h"
 #include "pinfo.h"
 #include "exec.h"
+#include "history.h"
+#include "nwatch.h"
 
 void runShell(){
     char * buf;
@@ -24,6 +26,10 @@ void runShell(){
     size_t s=0;
 
     getcwd(home, sizeof(home));
+    int curr=0;
+    char *h[25];
+
+    for(int i=0;i<25;i++){h[i] = NULL;}
 
     while(1){
         makePrompt(home);
@@ -51,6 +57,9 @@ void runShell(){
         for(int i=0;i<c;i++){
             
             tok = strtok(toks[i]," ");
+            if(tok[strlen(tok)-1] == '\n'){tok[strlen(tok)-1] = '\0';}
+            h[curr] = strdup(tok);
+            curr = (curr+1)%20;
 
             if(strcmp(tok,"cd") == 0 || strcmp(tok,"cd\n") == 0){changeDir(tok,home);}
 
@@ -58,6 +67,8 @@ void runShell(){
             else if(strcmp(tok,"ls") == 0 || strcmp(tok,"ls\n") == 0){printDir(tok,home);} 
             else if(strcmp(tok,"pinfo\n") == 0 || strcmp(tok,"pinfo") == 0){getPinfo(tok);}
             else if(strcmp(tok,"exit") == 0 || strcmp(tok,"exit\n") == 0){return;} 
+            else if(strcmp(tok,"history") == 0 || strcmp(tok,"history\n") == 0){history(h,curr);}
+            else if(strcmp(tok,"nightswatch") == 0){nwatch(tok);}
             
             else {
                 if(tok[strlen(tok)-1] == '\n'){tok[strlen(tok)-1] = '\0';}
@@ -67,6 +78,8 @@ void runShell(){
             if(i != c-1){printf("\n");}
 
         }
+
+        curr = (curr+1)%20;
 
     }
 }

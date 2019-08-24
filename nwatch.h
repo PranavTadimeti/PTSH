@@ -1,0 +1,1 @@
+void nwatch(char * tok);

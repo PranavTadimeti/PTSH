@@ -139,6 +139,7 @@ void printDir(char * tok,char * home){
                 strcat(temp,namelist[i]->d_name);
                 checkPerm(temp);
                 printf("%s\n",namelist[i]->d_name);
+                
             }
             
         } else {
@@ -154,5 +155,7 @@ void printDir(char * tok,char * home){
         printf("%s\n", namelist[i]->d_name);
         free(namelist[i]);
     }
+
+    
    
 }

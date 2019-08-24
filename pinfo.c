@@ -47,7 +47,7 @@ void getPinfo(char * tok){
     while((tok1= strtok(NULL," ")) != NULL){
         if(c == 1){
             strcpy(status,tok1);
-        } else if(c == 21){
+        } else if(c == 21){ 
             strcpy(mem,tok1);
         }
         c++;

@@ -22,4 +22,5 @@ void changeDir(char * tok,char * home){
     } else {
         chdir(dir);
     }
+
 }

@@ -6,9 +6,6 @@
 #include "prompt.h"
 
 void makePrompt(char * home){
-    //char home[PATH_MAX];
-    //getcwd(home,sizeof(home));
-    //printf("%s\n",home);
 
     char * buf1;
     char * buf2;
@@ -40,4 +37,7 @@ void makePrompt(char * home){
         printf("=>%s@%s:%s > ",buf1,buf2,temp);
         printf("\033[0m");
     }
+
+    //free(buf1);
+    //free(buf2);
 }

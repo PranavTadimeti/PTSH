@@ -22,6 +22,7 @@ void util(char * tok,char * buf2){
         }
         printf("%s\n",temp);
 
+
     } else {
         char pwd[PATH_MAX];
         getcwd(pwd,sizeof(pwd));

@@ -1,0 +1,1 @@
+void history(char *h[],int c);

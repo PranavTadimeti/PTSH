@@ -60,7 +60,6 @@ void execProc(char * argv[],char * tok){
 
         cpid = fork();
         if(cpid == 0){
-            printf("%s\n",argv[0]);
             execvp(argv[0],argv);
         } else {
             do {

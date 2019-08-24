@@ -1,7 +1,7 @@
 FLAGS = -g -Wall 
 
-ptsh: main.o cd.o prompt.o utils.o ls.o pinfo.o exec.o
-	gcc $(FLAGS) main.o cd.o prompt.o utils.o ls.o pinfo.o exec.o
+ptsh: main.o cd.o prompt.o utils.o ls.o pinfo.o exec.o history.o nwatch.o
+	gcc $(FLAGS) main.o cd.o prompt.o utils.o ls.o pinfo.o exec.o history.o nwatch.o
 
 clean: 
 	rm *.o a.out
@@ -26,3 +26,9 @@ pinfo.o: pinfo.c pinfo.h
 
 exec.o: exec.c exec.h
 	gcc $(FLAGS) -c exec.c
+
+history.o: history.c history.h
+	gcc $(FLAGS) -c history.c
+
+nwatch.o: nwatch.c nwatch.h
+	gcc $(FLAGS) -c nwatch.c
