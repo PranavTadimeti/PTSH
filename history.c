@@ -5,16 +5,19 @@
 #include<string.h>
 #include "history.h"
 
-void history(char *h[],int c){
-    int t = c;
+void printHistory(int c){
 
-    do {
-        if(h[t]){
-            printf("%s\n",h[t]);
-        }
+    FILE * fp = fopen("hist.txt","r");
+    char cmd[100];
 
-        t = (t+1)%20;
-    } while(t != c);
+    while(fgets(cmd,sizeof(cmd),fp) != NULL){
+        printf("%s",cmd);
+    }
 
     return;
+}
+
+void writeHistory(char * cmd){
+    FILE * fp = fopen("hist.txt","w");
+    
 }

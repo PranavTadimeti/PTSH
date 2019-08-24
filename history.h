@@ -1,1 +1,1 @@
-void history(char *h[],int c);
+void printHistory(int c);

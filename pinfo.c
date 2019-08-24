@@ -33,9 +33,6 @@ void getPinfo(char * tok){
 
     char procstat[100];
 
-    /*int fd = open(path,O_RDONLY);
-    read(fd,procstat,sizeof(procstat));*/
-
     FILE * fp = fopen(path,"r");
 
     char *tok1 = (char *)malloc(100*sizeof(char));
@@ -54,15 +51,14 @@ void getPinfo(char * tok){
         }
         c++;
     }
-    printf("Process Status: %sMemory: %s",status,mem);
+    printf("%s%s",status,mem);
 
-    //close(fd);
+    fclose(fp);
 
     strcpy(path,"/proc/");
     strcat(path,i);
     strcat(path,"/exe");
     
-    int fd = open(path ,O_RDONLY);
     char execpath[100];
 
     int s = readlink(path,execpath,sizeof(execpath));
@@ -70,7 +66,7 @@ void getPinfo(char * tok){
 
     printf("Executable path: %s\n",execpath);
     
-    //close(fp);
+    fclose(fp);
 
 
 

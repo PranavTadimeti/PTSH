@@ -100,9 +100,6 @@ void nwatch(char * tok){
                     }
                 }
             }
-
-            
-            
         }
     }
 }
