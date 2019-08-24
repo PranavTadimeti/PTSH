@@ -17,7 +17,7 @@ void getPinfo(char * tok){
         strcpy(i,tok);
     }
 
-    char path[100];
+    //char path[100];
 
     if(!flag){
         printf("PID: %d\n",getpid());
@@ -26,6 +26,7 @@ void getPinfo(char * tok){
         printf("PID: %s\n",i);
     }
 
+    char * path = (char *)malloc(100*sizeof(char));
     
     strcpy(path,"/proc/");
     strcat(path,i);
